@@ -5,25 +5,25 @@ internal class Program
 {
    static void Main(string[] args)
    {
-      var root = new BST(10);
-      root.left = new BST(5);
-      root.left.left = new BST(2);
-      root.left.left.left = new BST(1);
-      root.left.right = new BST(5);
-      root.right = new BST(15);
-      root.right.left = new BST(13);
-      root.right.left.right = new BST(14);
-      root.right.right = new BST(22);
+      var root = new BinaryTree(10);
+      root.left = new BinaryTree(5);
+      root.left.left = new BinaryTree(2);
+      root.left.left.left = new BinaryTree(1);
+      root.left.right = new BinaryTree(5);
+      root.right = new BinaryTree(15);
+      root.right.left = new BinaryTree(13);
+      root.right.left.right = new BinaryTree(14);
+      root.right.right = new BinaryTree(22);
 
-      var result = FindClosestValueInBst(root, 12);
+      var result = FindClosestValueInBinaryTree(root, 12);
       Console.WriteLine(result);
    }
 
-   public static int FindClosestValueInBst(BST tree, int target)
+   public static int FindClosestValueInBinaryTree(BinaryTree tree, int target)
    {
-      // return FindClosestValueInBst(tree, target, tree.value);
+      // return FindClosestValueInBinaryTree(tree, target, tree.value);
 
-      return FindClosestValueInBstOptimal(tree, target, tree.value);
+      return FindClosestValueInBinaryTreeOptimal(tree, target, tree.value);
    }
 
    // Average: O (log n) time | O (log n) space
@@ -31,7 +31,7 @@ internal class Program
    // This is a non-optimal algorithm because it's using recursive function
    // and this method uses more space complexity because each call
    // to the function create a new layer on the stack
-   public static int FindClosestValueInBst(BST tree, int target, int closest)
+   public static int FindClosestValueInBinaryTree(BinaryTree tree, int target, int closest)
    {
       if (tree == null) return closest;
 
@@ -42,11 +42,11 @@ internal class Program
 
       if (target > tree.value)
       {
-         return FindClosestValueInBst(tree.right, target, closest);
+         return FindClosestValueInBinaryTree(tree.right, target, closest);
       }
       else if (target < tree.value)
       {
-         return FindClosestValueInBst(tree.left, target, closest);
+         return FindClosestValueInBinaryTree(tree.left, target, closest);
       }
       else
       {
@@ -61,9 +61,9 @@ internal class Program
    // This is an optimal algorithm because it iterates through 
    // the values without creating new layers on stack
    // ----------------------------------------------------------
-   public static int FindClosestValueInBstOptimal(BST tree, int target, int closest)
+   public static int FindClosestValueInBinaryTreeOptimal(BinaryTree tree, int target, int closest)
    {
-      BST currentNode = tree;
+      BinaryTree currentNode = tree;
 
       while (currentNode != null)
       {
@@ -89,13 +89,13 @@ internal class Program
       return closest;
    }
 
-   public class BST
+   public class BinaryTree
    {
       public int value;
-      public BST left;
-      public BST right;
+      public BinaryTree left;
+      public BinaryTree right;
 
-      public BST(int value)
+      public BinaryTree(int value)
       {
          this.value = value;
       }

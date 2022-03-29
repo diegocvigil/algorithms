@@ -1,5 +1,5 @@
 # Algorithm
-### Find Closest Value In BST (Binary Search Tree)
+### Find Closest Value In BinaryTree (Binary Search Tree)
 
 **Goal** : Find the node with closest value based on the target value.
 
